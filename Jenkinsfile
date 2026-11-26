@@ -109,7 +109,7 @@ pipeline {
                     for attempt in 1 2 3 4 5; do
                         if docker exec "$CONTAINER_NAME" \
                             wget -qO- http://127.0.0.1/ \
-                            | grep -q "My First DevOps Project"; then
+                            | grep -q "ROLLBACK-TEST-INVALID"; then
 
                             HEALTHY=true
                             break
