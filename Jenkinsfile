@@ -17,6 +17,18 @@ pipeline {
             }
         }
 
+        stage('SonarQube Cloud Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('SonarQubeCloud') {
+                        sh "\"${scannerHome}/bin/sonar-scanner\""
+                    }
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
